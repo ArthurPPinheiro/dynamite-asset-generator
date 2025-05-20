@@ -1,0 +1,94 @@
+<style>
+    .tiles-container .product-grid.two-up .grid-interrupter-tile {
+        grid-column: 2/span 1;
+        grid-row: 1/span 1;
+        margin-bottom: 50px;
+    }
+
+    a.{{date}}-grid-{{cleanTitle}} {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: {{color}};
+        text-align: center;
+    }
+
+    picture img.{{date}}-grid-{{cleanTitle}}-img {
+        width: 100%;
+        height:  auto;
+    }
+
+    .{{date}}-grid-{{cleanTitle}}-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        width: {{width}};
+        height: 100%;
+        {{alignment}}: 0;
+    }
+
+    .{{date}}-grid-{{cleanTitle}}-text .{{date}}-grid-{{cleanTitle}}-title {
+        text-align: center;
+        font-size: 6vw;
+        margin: 0;
+        color: {{color}};
+        text-shadow: none;
+        line-height: 1.3;
+        margin-bottom: 0;
+    }
+    
+    .{{date}}-grid-{{cleanTitle}}-text .{{date}}-grid-{{cleanTitle}}-cta {
+        text-align: center;
+        font-size: 3vw;
+        margin: 0;
+        color: {{color}};
+        text-shadow: none;
+        transition: text-decoration 100ms ease;
+        text-decoration: underline transparent;
+    }
+
+    .{{date}}-grid-{{cleanTitle}}:hover .{{date}}-grid-{{cleanTitle}}-cta {
+        text-decoration: underline {{color}};
+        transition: text-decoration 300ms ease-out;
+    }
+
+    /*************** THREE ACROSS ***************/
+    .tiles-container .product-grid.three-up .{{date}}-grid-{{cleanTitle}}-text .{{date}}-grid-{{cleanTitle}}-cta {
+        font-size: 1vw;
+    }
+
+    .tiles-container .product-grid.three-up .{{date}}-grid-{{cleanTitle}}-text .{{date}}-grid-{{cleanTitle}}-title {
+        font-size: 3.5vw;
+        margin-bottom: 0;
+    }
+
+    /*************** FOUR ACROSS ***************/
+    .tiles-container .product-grid.four-up .{{date}}-grid-{{cleanTitle}}-text .{{date}}-grid-{{cleanTitle}}-cta {
+        font-size: .8vw;
+    }
+
+    .tiles-container .product-grid.four-up .{{date}}-grid-{{cleanTitle}}-text .{{date}}-grid-{{cleanTitle}}-title {
+        font-size: 2.5vw;
+        margin-bottom: 0;
+    }
+
+</style>
+
+<a href="$url('Search-Show','cgid', '{{catId}}')$" aria-label="{{ctaText}}" class="{{date}}-grid-{{cleanTitle}}"> 
+    <picture class="{{date}}-grid-{{cleanTitle}}-img">
+        <source media="(min-width: 768px)" srcset="DYN-2025/GRIDS/{{image}}.webp?$staticlink$ 600w" type="image/webp" />
+        <source media="(max-width: 767px)" srcset="DYN-2025/GRIDS/{{image}}-Mobile.webp?$staticlink$ 600w" type="image/webp" />
+        <source media="(min-width: 768px)" srcset="DYN-2025/GRIDS/{{image}}.jpg?$staticlink$ 600w" type="image/jpeg" />
+        <source media="(max-width: 767px)" srcset="DYN-2025/GRIDS/{{image}}-Mobile.jpg?$staticlink$ 600w" type="image/jpeg" />
+        <img src="DYN-2025/GRIDS/{{image}}.jpg?$staticlink$" alt="{{altText}}" width="600" height="900" loading="lazy" class="{{date}}-grid-{{cleanTitle}}-img" />
+    </picture>
+    <div class="{{date}}-grid-{{cleanTitle}}-text">
+        <p class="{{date}}-grid-{{cleanTitle}}-title dyn-font-regular">{{title}}</p> 
+        <p class="{{date}}-grid-{{cleanTitle}}-cta dyn-font-regular">{{ctaText}}</p> 
+    </div>
+</a>

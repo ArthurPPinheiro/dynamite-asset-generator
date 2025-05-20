@@ -1,0 +1,124 @@
+<style>
+	.{{cleanTitle}}-3D-wrapper {
+		width: 100%;
+		overflow-x: hidden;
+		background-color: #ffffff;
+	}
+	.{{cleanTitle}}-3D-banner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		position: relative;
+		width: 100%;
+		height: auto;
+	}
+	.{{cleanTitle}}-3D-styles-wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		width: 100%;
+		text-align: center;
+	}
+	.{{cleanTitle}}-3D-style img {
+		width: 100%;
+		height: auto;
+	}
+	.{{cleanTitle}}-3D-style {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 0 0.12vw;
+	}
+	/* FONT */
+	.style-name {
+		font-size: 0.75vw;
+		line-height: 1;
+		margin: 1vw 0 0;
+		color: #25252b;
+	}
+	.{{cleanTitle}}-3D-style:hover .style-name,
+	.{{cleanTitle}}-3D-style:active .style-name,
+	.{{cleanTitle}}-3D-style:hover .style-name span,
+	.{{cleanTitle}}-3D-style:active.style-name span {
+		text-decoration: underline;
+	}
+	.desk-only {
+		display: inline-block;
+	}
+	.{{cleanTitle}}-3D-style.active,
+	.{{cleanTitle}}-3D-style.active .style-name span {
+		text-decoration: underline;
+	}
+	.mob-only {
+		display: none;
+	}
+
+	@media screen and (max-width: 767px) {
+		.desk-only {
+			display: none;
+		}
+		.mob-only {
+			display: inline;
+		}
+		.{{cleanTitle}}-3D-banner {
+			height: auto;
+		}
+		.{{cleanTitle}}-3D-styles-wrapper {
+			width: 96%;
+			margin: 0 0 1vw;
+		}
+		.{{cleanTitle}}-3D-style {
+			margin: 0 0.25vw;
+		}
+		.style-name {
+			font-size: 2.25vw;
+			margin: 1.8vw 0 0;
+		}
+		.{{cleanTitle}}-3D-style:hover .style-name,
+		.{{cleanTitle}}-3D-style:active .style-name,
+		.{{cleanTitle}}-3D-style:hover .style-name span,
+		.{{cleanTitle}}-3D-style:active.style-name span {
+			text-decoration: none;
+		}
+	}
+</style>
+<div class="{{cleanTitle}}-3D-wrapper">
+	<div class="{{cleanTitle}}-3D-banner">
+		<div class="{{cleanTitle}}-3D-styles-wrapper">
+			{{#if isFrench}}
+			{{#each assets}}
+			<a href="$url('Search-Show','cgid','{{this.catId}}')$" aria-label="{{this.ctaTextFr}}." tabindex="0" role="link">
+				<div class="{{../cleanTitle}}-3D-style {{#if this.desktopOnly }}desk-only{{/if}} {{#ifEquals this.catId ../currentCatId }}active{{/ifEquals}}">
+					<picture>
+						<source media="(min-width: 768px)" srcset="DYN-2025/BANNER/{{this.image}}-Desktop.webp?$staticlink$ 316w" type="image/webp" />
+						<source media="(min-width: 768px)" srcset="DYN-2025/BANNER/{{this.image}}-Desktop.jpg?$staticlink$ 316w" type="image/jpeg" />
+						<source media="(max-width: 767px)" srcset="DYN-2025/BANNER/{{this.image}}-Mobile.webp?$staticlink$ 156w" type="image/webp" />
+						<source media="(max-width: 767px)" srcset="DYN-2025/BANNER/{{this.image}}-Mobile.jpg?$staticlink$ 156w" type="image/jpeg" />
+						<img src="DYN-2025/BANNER/{{this.image}}-Desktop.jpg?$staticlink$" alt="{{this.imageAltFr}}" width="316" height="430" />
+					</picture>
+					<div class="style-name dyn-font-regular">{{this.ctaTextFr}}</div>
+				</div>
+			</a>
+			{{/each}}
+			{{else}}
+			{{#each assets}}
+			<a href="$url('Search-Show','cgid','{{this.catId}}')$" aria-label="{{this.ctaText}}." tabindex="0" role="link">
+				<div class="{{../cleanTitle}}-3D-style {{#if this.desktopOnly }}desk-only{{/if}} {{#ifEquals this.catId ../currentCatId }}active{{/ifEquals}}">
+					<picture>
+						<source media="(min-width: 768px)" srcset="DYN-2025/BANNER/{{this.image}}-Desktop.webp?$staticlink$ 316w" type="image/webp" />
+						<source media="(min-width: 768px)" srcset="DYN-2025/BANNER/{{this.image}}-Desktop.jpg?$staticlink$ 316w" type="image/jpeg" />
+						{{#unless this.desktopOnly}}
+						<source media="(max-width: 767px)" srcset="DYN-2025/BANNER/{{this.image}}-Mobile.webp?$staticlink$ 156w" type="image/webp" />
+						<source media="(max-width: 767px)" srcset="DYN-2025/BANNER/{{this.image}}-Mobile.jpg?$staticlink$ 156w" type="image/jpeg" />
+						{{/unless}}
+						<img src="DYN-2025/BANNER/{{this.image}}-Desktop.jpg?$staticlink$" alt="{{this.imageAlt}}" width="316" height="430" />
+					</picture>
+					<div class="style-name dyn-font-regular">{{this.ctaText}}</div>
+				</div>
+			</a>
+			{{/each}}
+			{{/if}}
+		</div>
+	</div>
+</div>

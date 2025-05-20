@@ -1,0 +1,70 @@
+<form action="/grid" method="POST">
+    <div class="border rounded-md p-4 space-y-4 bg-gray-50 relative mb-4">
+        <label class="block text-sm font-medium">English</label>
+
+        <div>
+            <label class="block text-sm font-medium">Title</label>
+            <input name="title" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+        <div>
+            <label class="block text-sm font-medium">CTA Text</label>
+            <input name="ctaText" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+        <div>
+            <label class="block text-sm font-medium">Image Alt Text</label>
+            <input name="altText" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+    </div>
+    <div class="border rounded-md p-4 space-y-4 bg-gray-50 relative mb-4">
+        <label class="block text-sm font-medium">French</label>
+
+        <div>
+            <label class="block text-sm font-medium">Title</label>
+            <input name="titleFr" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+        <div>
+            <label class="block text-sm font-medium">CTA Text</label>
+            <input name="ctaTextFr" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+        <div>
+            <label class="block text-sm font-medium">Image Alt Text</label>
+            <input name="altTextFr" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+    </div>
+    <div class="border rounded-md p-4 space-y-4 bg-gray-50 relative">
+
+        <label class="block text-sm font-medium">General</label>
+        <div>
+            <label class="block text-sm font-medium">Date</label>
+            <input name="date" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+        <div>
+            <label class="block text-sm font-medium">Cat ID</label>
+            <input name="catId" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+        <div>
+            <label class="block text-sm font-medium">Width</label>
+            <input name="width" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+        <div>
+            <label class="block text-sm font-medium">Alignment</label>
+            <select name="alignment" class="w-full mt-1 px-4 py-2 border rounded-md">
+                <option value="left" selected>Left</option>
+                <option value="right">Right</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-sm font-medium">Color</label>
+            <input name="color" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+        <div>
+            <label class="block text-sm font-medium">Image Path</label>
+            <input name="image" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+        </div>
+    </div>
+    <div class="mt-6 flex justify-between">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md">
+            Generate Asset
+        </button>
+    </div>
+</form>

@@ -1,0 +1,107 @@
+<form action="/catbanner" method="POST">
+    <div class="mt-6 flex justify-between">
+        <button type="button" id="addAssetBlock"
+            class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md mb-4">
+            + Adicionar Outro Asset
+        </button>
+    </div>
+    <div>
+        <div>
+            <label class="block text-sm font-medium">Title</label>
+            <input name="title" required class="w-full mt-1 px-4 py-2 border rounded-md mb-4" />
+        </div>
+        <div>
+            <label class="block text-sm font-medium">Date</label>
+            <input name="date" required class="w-full mt-1 px-4 py-2 border rounded-md mb-4" />
+        </div>
+        <div id="catbannerTemplate" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="asset-block border rounded-md p-4 space-y-4 bg-gray-100 relative mb-2">
+                <button type="button"
+                    class="remove-block absolute top-2 right-2 text-red-500 hover:text-red-700 hidden">✕</button>
+                <div class="border rounded-md p-4 space-y-4 bg-gray-50 relative mb-2">
+                    <label class="block text-sm font-medium">English</label>
+
+                    <div>
+                        <label class="block text-sm font-medium">CTA Text</label>
+                        <input name="assets[0][ctaText]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Image Alt Text</label>
+                        <input name="assets[0][imageAlt]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                    </div>
+                </div>
+                <div class="border rounded-md p-4 space-y-4 bg-gray-50 relative mb-2">
+                    <label class="block text-sm font-medium">French</label>
+
+                    <div>
+                        <label class="block text-sm font-medium">CTA Text</label>
+                        <input name="assets[0][ctaTextFr]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Image Alt Text</label>
+                        <input name="assets[0][imageAltFr]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                    </div>
+                </div>
+                <div class="border rounded-md p-4 space-y-4 bg-gray-50 relative mb-2">
+                    <label class="block text-sm font-medium">General</label>
+
+                    <div>
+                        <label class="block text-sm font-medium">Cat ID</label>
+                        <input name="assets[0][catId]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Image Path</label>
+                        <input name="assets[0][image]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Desktop Only</label>
+                        <input type="checkbox" name="assets[0][desktopOnly]" class="mt-1" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-6 flex justify-between">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md">
+            Generate Asset
+        </button>
+    </div>
+</form>
+
+<script>
+    let count = 1;
+    const wrapper = document.getElementById("catbannerTemplate");
+    const addBtn = document.getElementById("addAssetBlock");
+
+    addBtn.addEventListener("click", () => {
+        const first = wrapper.querySelector(".asset-block");
+        const clone = first.cloneNode(true);
+
+        clone.querySelectorAll("input, select").forEach((input) => {
+            const name = input.getAttribute("name");
+            const updatedName = name.replace(/\d+/, count);
+            input.setAttribute("name", updatedName);
+            input.value = ""; // clear value
+        });
+
+        clone.querySelector(".remove-block").classList.remove("hidden");
+        clone.querySelector(".remove-block").addEventListener("click", () => {
+            wrapper.removeChild(clone);
+        });
+
+        wrapper.appendChild(clone);
+        count++;
+    });
+
+    const desktopOnlyCheckboxes = document.querySelectorAll('input[name^="assets"][name$="[desktopOnly]"]');
+    desktopOnlyCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", function () {
+            if (this.checked) {
+                this.setAttribute("value", "true");
+            } else {
+                this.removeAttribute("value");
+            }
+        });
+    });
+
+</script>

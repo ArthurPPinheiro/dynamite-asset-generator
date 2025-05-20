@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Assets Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800 min-h-screen flex items-center justify-center">
+    <div class="bg-white rounded-2xl shadow-lg p-8 w-full mr-10 ml-10 mt-10">
+        <h1 class="text-2xl font-bold mb-6 text-center">Content Assets Generator</h1>
+        <div id="assetsWrapper" class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium">Tipo de Asset</label>
+                <select name="assetType" class="w-full mt-1 px-4 py-2 border rounded-md" id="asset-type">
+                    <option value="grid" selected>Grid Interruptor</option>
+                    <option value="catbanner-3d">3D CatBanner</option>
+                </select>
+            </div>
+            <div class="grid-template">
+                <%- include('forms/grid-form') -%>
+            </div>
+
+            <div class="catbanner-3d-template hidden">
+                <%- include('forms/catbanner-form') -%>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    const assetTypeSelector = document.getElementById("asset-type");
+
+
+    assetTypeSelector.addEventListener("change", (event) => {
+        const selectedType = event.target.value;
+        const templates = document.querySelectorAll(".grid-template, .catbanner-3d-template");
+
+        templates.forEach((template) => {
+            if (template.classList.contains(`${selectedType}-template`)) {
+                template.classList.remove("hidden");
+            } else {
+                template.classList.add("hidden");
+            }
+        });
+    });
+</script>
