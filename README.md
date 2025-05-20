@@ -21,8 +21,8 @@ Before running the project, ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/asset-generator.git
-   cd asset-generator
+   git clone https://github.com/ArthurPPinheiro/dynamite-asset-generator.git
+   cd dynamite-asset-generator
    ```
 
 2. Install the dependencies:
