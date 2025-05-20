@@ -40,6 +40,8 @@ router.post('/', (req, res) => {
         generateAssetCatbanner(assets, currentCatId, cleanTitle, filePath, template, fs);
     });
 
+    res.redirect('/');
+
 });
 
 function cleanString(string) {
