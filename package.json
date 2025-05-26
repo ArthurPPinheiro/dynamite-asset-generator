@@ -10,6 +10,8 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.2",
-    "nodemon": "^3.1.10"
+    "multer": "^2.0.0",
+    "nodemon": "^3.1.10",
+    "sharp": "^0.34.2"
   }
 }
