@@ -1,7 +1,5 @@
 const express = require('express');
-const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const path = require('path');
 const catbanner = require('./routes/catbanner');
 const grid = require('./routes/grid');
 

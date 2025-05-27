@@ -12,12 +12,32 @@
         </div>
         <div>
             <label class="block text-sm font-medium">Date</label>
-            <input name="date" required class="w-full mt-1 px-4 py-2 border rounded-md mb-4" />
+            <input type="date" name="date" required class="w-full mt-1 px-4 py-2 border rounded-md mb-4" />
         </div>
         <div id="catbannerTemplate" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div class="asset-block border rounded-md p-4 space-y-4 bg-gray-100 relative mb-2">
                 <button type="button"
                     class="remove-block absolute top-2 right-2 text-red-500 hover:text-red-700 hidden">✕</button>
+                <div class="border rounded-md p-4 space-y-4 bg-gray-50 relative mb-2">
+                    <label class="block text-sm font-medium">General</label>
+
+                    <div>
+                        <label class="block text-sm font-medium">Cat ID</label>
+                        <input name="assets[0][catId]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Image (Desktop)</label>
+                        <input type="file" name="assets[0][image]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Image (Mobile)</label>
+                        <input type="file" name="assets[0][image]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium">Desktop Only</label>
+                        <input type="checkbox" name="assets[0][desktopOnly]" class="mt-1" />
+                    </div>
+                </div>
                 <div class="border rounded-md p-4 space-y-4 bg-gray-50 relative mb-2">
                     <label class="block text-sm font-medium">English</label>
 
@@ -40,22 +60,6 @@
                     <div>
                         <label class="block text-sm font-medium">Image Alt Text</label>
                         <input name="assets[0][imageAltFr]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
-                    </div>
-                </div>
-                <div class="border rounded-md p-4 space-y-4 bg-gray-50 relative mb-2">
-                    <label class="block text-sm font-medium">General</label>
-
-                    <div>
-                        <label class="block text-sm font-medium">Cat ID</label>
-                        <input name="assets[0][catId]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium">Image Path</label>
-                        <input name="assets[0][image]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium">Desktop Only</label>
-                        <input type="checkbox" name="assets[0][desktopOnly]" class="mt-1" />
                     </div>
                 </div>
             </div>

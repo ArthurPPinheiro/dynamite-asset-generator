@@ -61,7 +61,7 @@ class Grid {
         return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-grid-' + this.cleanTitle + '-' + this.getDateMonthDay() + '-' + this.date.getFullYear() + '-fr.html';
     }
 
-    getFileName() {
+    getImageName() {
         return `Grids-${this.getDateMonthDay()}-${this.cleanTitle}-Img`;
     }
 
@@ -69,7 +69,7 @@ class Grid {
         const monthName = this.getMonthName();
         const monthNumber = (this.date.getMonth() + 1).toString().padStart(2, '0');
 
-        return `${monthNumber}-${monthName}/${this.getFileName()}`;
+        return `${monthNumber}-${monthName}/${this.getImageName()}`;
     }
 }
 
