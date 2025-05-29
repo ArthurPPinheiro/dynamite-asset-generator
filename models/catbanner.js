@@ -67,7 +67,7 @@ class Catbanner {
     }
 
     getImageOutputDirectory() {
-        return `outputs/${this.getDateMonthDay()}/images/`;
+        return `outputs/${this.getDateMonthDay()}-${this.cleanTitle}/images/`;
     }
 
     getAssetOutputDirectory() {

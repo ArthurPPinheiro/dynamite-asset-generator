@@ -3,6 +3,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const handlebars = require('express-handlebars').create();
 const Catbanner = require('../models/catbanner');
+const ImageHandler = require('../models/image-handler');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
@@ -78,6 +79,30 @@ async function generateBaseCatbanner(assets){
     await fs.writeFile(baseAsset.getBaseFilePathFrench(), outputFr);
 
     isFrench = false;
+}
+
+async function compressImages(asset, file) {
+    if(!file || !file.path){
+        console.error('Invalid file or file path');
+        return;
+    }
+
+    const imageHandler = new ImageHandler();
+
+    await fs.mkdir(asset.getImageOutputDirectory(), { recursive: true });
+
+    const imageTasks = [
+        { width: 1200, height: 900, quality: 75, format: 'jpeg', maxSize: 70, isMobile: false },
+        { width: 1200, height: 900, quality: 75, format: 'webp', maxSize: 70, isMobile: false },
+        { width: 600, height: 450, quality: 75, format: 'jpeg', maxSize: 50, isMobile: true },
+        { width: 600, height: 450, quality: 75, format: 'webp', maxSize: 50, isMobile: true }
+    ]
+
+    for(const task of imageTasks){
+        await imageHandler.proccessImage(file, asset.getImageOutputDirectory(), asset.getImageName(), task);
+    }
+
+    console.log('Image processing tasks completed successfully');
 }
 
 module.exports = router;
