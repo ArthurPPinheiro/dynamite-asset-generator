@@ -106,13 +106,13 @@
 			<a href="$url('Search-Show','cgid','{{this.catId}}')$" aria-label="{{this.ctaText}}." tabindex="0" role="link">
 				<div class="{{../cleanTitle}}-3D-style{{#if this.desktopOnly }} desk-only{{/if}}{{#ifEquals this.catId ../currentCatId }} active{{/ifEquals}}">
 					<picture>
-						<source media="(min-width: 768px)" srcset="DYN-2025/BANNER/{{this.image}}-Desktop.webp?$staticlink$ 316w" type="image/webp" />
-						<source media="(min-width: 768px)" srcset="DYN-2025/BANNER/{{this.image}}-Desktop.jpg?$staticlink$ 316w" type="image/jpeg" />
+						<source media="(min-width: 768px)" srcset="DYN-2025/BANNER/{{this.image}}-Img-Desktop.webp?$staticlink$ 316w" type="image/webp" />
+						<source media="(min-width: 768px)" srcset="DYN-2025/BANNER/{{this.image}}-Img-Desktop.jpg?$staticlink$ 316w" type="image/jpeg" />
 						{{#unless this.desktopOnly}}
-						<source media="(max-width: 767px)" srcset="DYN-2025/BANNER/{{this.image}}-Mobile.webp?$staticlink$ 156w" type="image/webp" />
-						<source media="(max-width: 767px)" srcset="DYN-2025/BANNER/{{this.image}}-Mobile.jpg?$staticlink$ 156w" type="image/jpeg" />
+						<source media="(max-width: 767px)" srcset="DYN-2025/BANNER/{{this.image}}-Img-Mobile.webp?$staticlink$ 156w" type="image/webp" />
+						<source media="(max-width: 767px)" srcset="DYN-2025/BANNER/{{this.image}}-Img-Mobile.jpg?$staticlink$ 156w" type="image/jpeg" />
 						{{/unless}}
-						<img src="DYN-2025/BANNER/{{this.image}}-Desktop.jpg?$staticlink$" alt="{{this.imageAlt}}" width="316" height="430" />
+						<img src="DYN-2025/BANNER/{{this.image}}-Img-Desktop.jpg?$staticlink$" alt="{{this.imageAlt}}" width="316" height="430" />
 					</picture>
 					<div class="style-name dyn-font-regular">{{this.ctaText}}</div>
 				</div>

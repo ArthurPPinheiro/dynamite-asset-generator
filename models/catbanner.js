@@ -56,7 +56,11 @@ class Catbanner {
     }
 
     getImageName() {
-        return `${this.getMonthName()}-${this.cleanTitle}-${this.cleanCta}-Img`;
+        return `${this.getMonthName()}-${this.cleanTitle}-${this.capitalize(this.cleanCta)}`;
+    }
+
+    getImagePrefix() {
+        return `${this.getMonthName()}-${this.cleanTitle}-`;
     }
 
     getImagePath() {
@@ -88,6 +92,11 @@ class Catbanner {
 
     getBaseFilePathFrench() {
         return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-catbanner-' + this.cleanTitle + '-3d-' + this.getMonthName().toLowerCase() + '-' + this.date.getFullYear() + '-fr.html';
+    }
+
+    capitalize(str) {
+        if (!str) return '';
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     }
 
 }

@@ -1,4 +1,4 @@
-<form action="/catbanner" method="POST">
+<form action="/catbanner" method="POST" enctype="multipart/form-data">
     <div class="mt-6 flex justify-between">
         <button type="button" id="addAssetBlock"
             class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md mb-4">
@@ -27,11 +27,11 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium">Image (Desktop)</label>
-                        <input type="file" name="assets[0][image]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                        <input type="file" name="imageDesktop" required class="w-full mt-1 px-4 py-2 border rounded-md" />
                     </div>
                     <div>
                         <label class="block text-sm font-medium">Image (Mobile)</label>
-                        <input type="file" name="assets[0][image]" required class="w-full mt-1 px-4 py-2 border rounded-md" />
+                        <input type="file" name="imageMobile" required class="w-full mt-1 px-4 py-2 border rounded-md" />
                     </div>
                     <div>
                         <label class="block text-sm font-medium">Desktop Only</label>

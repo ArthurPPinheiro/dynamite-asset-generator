@@ -3,10 +3,16 @@ const fs = require('fs').promises;
 const path = require('path');
 const handlebars = require('express-handlebars').create();
 const Catbanner = require('../models/catbanner');
-const ImageHandler = require('../models/image-handler');
+const ImageHandler = require('../models/helpers/image-handler');
+const multer = require('multer');
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+const upload = multer({ dest: 'uploads/' });
+
+router.post('/', upload.fields([{name: 'imageDesktop'}, {name: 'imageMobile'}]), async (req, res) => {
+    console.log(req.files);
+    const files = req.files;
+
     const rawAssetsData = Array.isArray(req.body.assets) ? req.body.assets : [req.body.assets];
     const assets = rawAssetsData.map(assetData => {
         const combinedData = {
@@ -19,7 +25,9 @@ router.post('/', async (req, res) => {
 
     handlebarsFunctionsRegisterHelpers(handlebars);
 
-    await fs.mkdir(assets[0].getAssetOutputDirectory());
+    await fs.mkdir(assets[0].getAssetOutputDirectory(), { recursive: true });
+
+    await compressImages(assets[0], files);
 
     generateBaseCatbanner(assets);
     
@@ -81,9 +89,9 @@ async function generateBaseCatbanner(assets){
     isFrench = false;
 }
 
-async function compressImages(asset, file) {
-    if(!file || !file.path){
-        console.error('Invalid file or file path');
+async function compressImages(asset, files) {
+    if (!files || Object.keys(files).length === 0) {
+        console.log('No files were uploaded.');
         return;
     }
 
@@ -91,18 +99,43 @@ async function compressImages(asset, file) {
 
     await fs.mkdir(asset.getImageOutputDirectory(), { recursive: true });
 
-    const imageTasks = [
-        { width: 1200, height: 900, quality: 75, format: 'jpeg', maxSize: 70, isMobile: false },
-        { width: 1200, height: 900, quality: 75, format: 'webp', maxSize: 70, isMobile: false },
-        { width: 600, height: 450, quality: 75, format: 'jpeg', maxSize: 50, isMobile: true },
-        { width: 600, height: 450, quality: 75, format: 'webp', maxSize: 50, isMobile: true }
-    ]
+    console.log("files", files);
+    console.log("files desk", files.imageDesktop);
+    console.log("files mob", files.imageMobile);
 
-    for(const task of imageTasks){
-        await imageHandler.proccessImage(file, asset.getImageOutputDirectory(), asset.getImageName(), task);
+    let imageTasks = [];
+
+    for(const file of files.imageDesktop){
+        imageTasks = [
+            { width: 1200, height: 900, quality: 75, format: 'jpeg', maxSize: 50, isMobile: false },
+            { width: 1200, height: 900, quality: 75, format: 'webp', maxSize: 50, isMobile: false }
+        ];
+
+        for(const task of imageTasks){
+            await imageHandler.proccessImage(file, asset.getImageOutputDirectory(), asset.getImagePrefix()+file.originalname, task);
+        } 
     }
 
+    for(const file of files.imageMobile){
+        imageTasks = [
+            { width: 600, height: 450, quality: 75, format: 'jpeg', maxSize: 30, isMobile: true },
+            { width: 600, height: 450, quality: 75, format: 'webp', maxSize: 30, isMobile: true }
+        ];
+        
+        for(const task of imageTasks){
+            await imageHandler.proccessImage(file, asset.getImageOutputDirectory(), asset.getImagePrefix() + getFileCleanName(file.originalname), task);
+        } 
+    }
+
+
     console.log('Image processing tasks completed successfully');
+}
+
+function getFileCleanName(fileName) {
+    console.log("file name", fileName);
+    console.log("split", fileName.split('.')[0]);
+
+    return fileName.split('.')[0];
 }
 
 module.exports = router;
