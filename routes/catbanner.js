@@ -10,8 +10,9 @@ const router = express.Router();
 const upload = multer({ dest: 'uploads/' });
 
 router.post('/', upload.fields([{name: 'imageDesktop'}, {name: 'imageMobile'}]), async (req, res) => {
-    // console.log(req.files);
-    // const files = req.files;
+    const files = req.files;
+    console.log("req.body.assets", req.body.assets);
+    console.log("req.body", req.body);
 
     const rawAssetsData = Array.isArray(req.body.assets) ? req.body.assets : [req.body.assets];
     const assets = rawAssetsData.map(assetData => {
@@ -28,7 +29,7 @@ router.post('/', upload.fields([{name: 'imageDesktop'}, {name: 'imageMobile'}]),
 
     await fs.mkdir(assets[0].getAssetOutputDirectory(), { recursive: true });
 
-    // await compressImages(assets[0], files);
+    await compressImages(assets[0], files);
 
     generateBaseCatbanner(assets);
     
@@ -107,24 +108,25 @@ async function compressImages(asset, files) {
     let imageTasks = [];
 
     for(const file of files.imageDesktop){
+        console.log("file", file)
         imageTasks = [
-            { width: 1200, height: 900, quality: 75, format: 'jpeg', maxSize: 50, isMobile: false },
-            { width: 1200, height: 900, quality: 75, format: 'webp', maxSize: 50, isMobile: false }
+            { quality: 75, format: 'jpeg', maxSize: 50, isMobile: false },
+            { quality: 75, format: 'webp', maxSize: 50, isMobile: false }
         ];
 
         for(const task of imageTasks){
-            await imageHandler.proccessImage(file, asset.getImageOutputDirectory(), asset.getImagePrefix()+file.originalname, task);
+            await imageHandler.proccessImageNoResize(file, asset.getImageOutputDirectory(), asset.getImagePrefix() + getFileCleanName(file.originalname), task);
         } 
     }
 
     for(const file of files.imageMobile){
         imageTasks = [
-            { width: 600, height: 450, quality: 75, format: 'jpeg', maxSize: 30, isMobile: true },
-            { width: 600, height: 450, quality: 75, format: 'webp', maxSize: 30, isMobile: true }
+            { quality: 75, format: 'jpeg', maxSize: 30, isMobile: true },
+            { quality: 75, format: 'webp', maxSize: 30, isMobile: true }
         ];
         
         for(const task of imageTasks){
-            await imageHandler.proccessImage(file, asset.getImageOutputDirectory(), asset.getImagePrefix() + getFileCleanName(file.originalname), task);
+            await imageHandler.proccessImageNoResize(file, asset.getImageOutputDirectory(), asset.getImagePrefix() + getFileCleanName(file.originalname), task);
         } 
     }
 
@@ -133,9 +135,6 @@ async function compressImages(asset, files) {
 }
 
 function getFileCleanName(fileName) {
-    console.log("file name", fileName);
-    console.log("split", fileName.split('.')[0]);
-
     return fileName.split('.')[0];
 }
 
