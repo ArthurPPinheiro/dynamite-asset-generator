@@ -1,5 +1,5 @@
 class Grid {
-    constructor({ title, ctaText, altText, titleFr, ctaTextFr, altTextFr, catId, width, alignment, color, image, imageFile, assetType, date }) {
+    constructor({ title, ctaText, altText, titleFr, ctaTextFr, altTextFr, catId, width, alignment, color, imageFile, crosssell, date }) {
         this.date = this.generateDate(date);
         this.title = title;
         this.ctaText = ctaText;
@@ -12,6 +12,7 @@ class Grid {
         this.alignment = alignment;
         this.color = color;
         this.imageFile = imageFile;
+        this.crosssell = crosssell != undefined ? true : false;
         this.cleanTitle = this.cleanString(title);
         this.image = this.getImagePath();
         this.formattedDate = this.cleanString(this.getDateMonthDay());
@@ -61,7 +62,7 @@ class Grid {
         return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-grid-' + this.cleanTitle + '-' + this.getDateMonthDay() + '-' + this.date.getFullYear() + '-fr.html';
     }
 
-    getFileName() {
+    getImageName() {
         return `Grids-${this.getDateMonthDay()}-${this.cleanTitle}-Img`;
     }
 
@@ -69,7 +70,7 @@ class Grid {
         const monthName = this.getMonthName();
         const monthNumber = (this.date.getMonth() + 1).toString().padStart(2, '0');
 
-        return `${monthNumber}-${monthName}/${this.getFileName()}`;
+        return `${monthNumber}-${monthName}/${this.getImageName()}`;
     }
 }
 
