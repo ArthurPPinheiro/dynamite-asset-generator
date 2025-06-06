@@ -22,7 +22,14 @@ router.post('/', upload.single('imageFile'), async (req, res) => {
 });
 
 async function genereateAsset(grid) {
-    const templatePath = path.join(__dirname, `../templates/grid.hbs`);
+    let templatePath;
+
+    if(grid.crosssell == true){
+        templatePath = path.join(__dirname, `../templates/grid-crosssell.hbs`);
+    }else{
+        templatePath = path.join(__dirname, `../templates/grid.hbs`);
+    }
+
     const templateSrc = await fs.readFile(templatePath, { encoding: 'utf-8' }); 
     const template = handlebars.handlebars.compile(templateSrc);
 

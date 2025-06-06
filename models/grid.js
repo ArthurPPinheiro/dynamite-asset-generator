@@ -1,5 +1,5 @@
 class Grid {
-    constructor({ title, ctaText, altText, titleFr, ctaTextFr, altTextFr, catId, width, alignment, color, image, imageFile, assetType, date }) {
+    constructor({ title, ctaText, altText, titleFr, ctaTextFr, altTextFr, catId, width, alignment, color, imageFile, crosssell, date }) {
         this.date = this.generateDate(date);
         this.title = title;
         this.ctaText = ctaText;
@@ -12,6 +12,7 @@ class Grid {
         this.alignment = alignment;
         this.color = color;
         this.imageFile = imageFile;
+        this.crosssell = crosssell != undefined ? true : false;
         this.cleanTitle = this.cleanString(title);
         this.image = this.getImagePath();
         this.formattedDate = this.cleanString(this.getDateMonthDay());
