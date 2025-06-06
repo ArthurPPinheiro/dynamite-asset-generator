@@ -10,8 +10,8 @@ const router = express.Router();
 const upload = multer({ dest: 'uploads/' });
 
 router.post('/', upload.fields([{name: 'imageDesktop'}, {name: 'imageMobile'}]), async (req, res) => {
-    console.log(req.files);
-    const files = req.files;
+    // console.log(req.files);
+    // const files = req.files;
 
     const rawAssetsData = Array.isArray(req.body.assets) ? req.body.assets : [req.body.assets];
     const assets = rawAssetsData.map(assetData => {
@@ -20,6 +20,7 @@ router.post('/', upload.fields([{name: 'imageDesktop'}, {name: 'imageMobile'}]),
             title: req.body.title, 
             date: req.body.date
         }
+
         return new Catbanner(combinedData);
     });
 
@@ -27,7 +28,7 @@ router.post('/', upload.fields([{name: 'imageDesktop'}, {name: 'imageMobile'}]),
 
     await fs.mkdir(assets[0].getAssetOutputDirectory(), { recursive: true });
 
-    await compressImages(assets[0], files);
+    // await compressImages(assets[0], files);
 
     generateBaseCatbanner(assets);
     

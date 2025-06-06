@@ -21,7 +21,7 @@ class Catbanner {
         this.catId = catId;
         this.image = image;
         this.imageMobile = imageMobile;
-        this.desktopOnly = desktopOnly;
+        this.desktopOnly = desktopOnly != undefined ? true : false;
         this.cleanTitle = this.cleanString(title);
         this.formattedDate = this.cleanString(this.getDateMonthDay());
         this.image = this.getImagePath();
