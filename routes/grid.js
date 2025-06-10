@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
 const handlebars = require('express-handlebars').create();
-const Grid = require('../models/Grid');
+const Grid = require('../models/grid');
 const multer = require('multer');
 const ImageHandler = require('../models/helpers/image-handler');
 
