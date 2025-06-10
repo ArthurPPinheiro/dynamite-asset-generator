@@ -7,7 +7,7 @@ const ImageHandler = require('../models/helpers/image-handler');
 const multer = require('multer');
 const router = express.Router();
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: '/tmp/uploads/' });
 
 router.post('/', upload.fields([{name: 'imageDesktop'}, {name: 'imageMobile'}]), async (req, res) => {
     const files = req.files;
@@ -15,6 +15,7 @@ router.post('/', upload.fields([{name: 'imageDesktop'}, {name: 'imageMobile'}]),
     console.log("req.body", req.body);
 
     const rawAssetsData = Array.isArray(req.body.assets) ? req.body.assets : [req.body.assets];
+    console.log("rawAssetsData", rawAssetsData);
     const assets = rawAssetsData.map(assetData => {
         const combinedData = {
             ...assetData, 

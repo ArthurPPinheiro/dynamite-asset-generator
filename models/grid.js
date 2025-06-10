@@ -47,19 +47,19 @@ class Grid {
     }
 
     getAssetOutputDirectoryPath() {
-        return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle;
+        return 'tmp/outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle;
     }
 
     getImageOutputDirectoryPath() {
-        return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/images/';
+        return 'tmp/outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/images/';
     }
 
     getFilePath() {
-        return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-grid-' + this.cleanTitle + '-' + this.getDateMonthDay() + '-' + this.date.getFullYear() + '.html';
+        return 'tmp/outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-grid-' + this.cleanTitle + '-' + this.getDateMonthDay() + '-' + this.date.getFullYear() + '.html';
     }
 
     getFilePathFrench() {
-        return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-grid-' + this.cleanTitle + '-' + this.getDateMonthDay() + '-' + this.date.getFullYear() + '-fr.html';
+        return 'tmp/outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-grid-' + this.cleanTitle + '-' + this.getDateMonthDay() + '-' + this.date.getFullYear() + '-fr.html';
     }
 
     getImageName() {

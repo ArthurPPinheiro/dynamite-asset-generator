@@ -71,27 +71,27 @@ class Catbanner {
     }
 
     getImageOutputDirectory() {
-        return `outputs/${this.getDateMonthDay()}-${this.cleanTitle}/images/`;
+        return `tmp/outputs/${this.getDateMonthDay()}-${this.cleanTitle}/images/`;
     }
 
     getAssetOutputDirectory() {
-        return `outputs/${this.getDateMonthDay()}-${this.cleanTitle}/`;
+        return `tmp/outputs/${this.getDateMonthDay()}-${this.cleanTitle}/`;
     }
 
     getFilePath() {
-        return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-catbanner-' + this.cleanTitle + '-' + this.cleanCta + '-3d-' + this.getMonthName().toLowerCase() + '-' + this.date.getFullYear() + '.html';
+        return 'tmp/outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-catbanner-' + this.cleanTitle + '-' + this.cleanCta + '-3d-' + this.getMonthName().toLowerCase() + '-' + this.date.getFullYear() + '.html';
     }
 
     getFilePathFrench() {
-        return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-catbanner-' + this.cleanTitle + '-' + this.cleanCta + '-3d-' + this.getMonthName().toLowerCase() + '-' + this.date.getFullYear() + '-fr.html';
+        return 'tmp/outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-catbanner-' + this.cleanTitle + '-' + this.cleanCta + '-3d-' + this.getMonthName().toLowerCase() + '-' + this.date.getFullYear() + '-fr.html';
     }
 
     getBaseFilePath() {
-        return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-catbanner-' + this.cleanTitle + '-3d-' + this.getMonthName().toLowerCase() + '-' + this.date.getFullYear() + '.html';
+        return 'tmp/outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-catbanner-' + this.cleanTitle + '-3d-' + this.getMonthName().toLowerCase() + '-' + this.date.getFullYear() + '.html';
     }
 
     getBaseFilePathFrench() {
-        return 'outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-catbanner-' + this.cleanTitle + '-3d-' + this.getMonthName().toLowerCase() + '-' + this.date.getFullYear() + '-fr.html';
+        return 'tmp/outputs/' + this.getDateMonthDay() + '-' + this.cleanTitle + '/dyn-catbanner-' + this.cleanTitle + '-3d-' + this.getMonthName().toLowerCase() + '-' + this.date.getFullYear() + '-fr.html';
     }
 
     capitalize(str) {
