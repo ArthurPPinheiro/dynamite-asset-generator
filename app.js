@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const catbanner = require('./routes/catbanner');
 const grid = require('./routes/grid');
+const path = require('path');
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
