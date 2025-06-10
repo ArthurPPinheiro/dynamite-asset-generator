@@ -8,8 +8,6 @@ const ImageHandler = require('../models/helpers/image-handler');
 
 const router = express.Router();
 
-await fs.mkdir('/tmp/uploads/', { recursive: true });
-
 const upload = multer({ dest: '/tmp/uploads/' })
 
 router.post('/', upload.single('imageFile'), async (req, res) => {
